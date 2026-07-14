@@ -14,8 +14,8 @@ import {SITE_URL, localeUrl} from "@/lib/seo";
 import type {AppLocale} from "@/lib/config";
 import type {PackageCardData} from "@/lib/types";
 
-// Runtime data (DB) -> render at request time with a safe fallback.
-export const dynamic = "force-dynamic";
+// ISR: re-generate the featured grid at most hourly (served from CDN).
+export const revalidate = 3600;
 
 async function getFeaturedPackages(): Promise<PackageCardData[]> {
   try {

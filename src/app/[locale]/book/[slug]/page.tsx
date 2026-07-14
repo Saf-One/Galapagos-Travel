@@ -1,4 +1,5 @@
 import {setRequestLocale, getTranslations} from "next-intl/server";
+import Image from "next/image";
 import {notFound} from "next/navigation";
 import {Link} from "@/i18n/navigation";
 import {Container} from "@/components/Container";
@@ -53,13 +54,14 @@ export default async function BookPackagePage({
           {/* Package summary */}
           <div>
             <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-sand">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={
                   pkg.images[0]?.url ||
                   "https://picsum.photos/seed/galapagos/640/480"
                 }
                 alt={pkg.images[0]?.alt || pkg.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="h-full w-full object-cover"
               />
             </div>

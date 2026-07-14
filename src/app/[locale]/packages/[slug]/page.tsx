@@ -1,5 +1,6 @@
 import {setRequestLocale, getTranslations} from "next-intl/server";
 import type {Metadata} from "next";
+import Image from "next/image";
 import {notFound} from "next/navigation";
 import {Link} from "@/i18n/navigation";
 import {Container} from "@/components/Container";
@@ -11,8 +12,8 @@ import {deriveHighlights} from "@/lib/types";
 import {localeUrl, hreflangAlternates} from "@/lib/seo";
 import type {AppLocale} from "@/lib/config";
 
-// Runtime data (DB read) -> render at request time with safe fallback.
-export const dynamic = "force-dynamic";
+// ISR: re-generate the package detail at most hourly (served from CDN).
+export const revalidate = 3600;
 
 // === CONFIGURABLE VALUES ===
 // Maximum promo discount applied (guard). 0 = no cap.
@@ -205,19 +206,22 @@ export default async function PackageDetailPage({
         <section aria-label={tp("gallery")}>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
             <div className="md:col-span-2 md:row-span-2">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={images[0].url}
                 alt={images[0].alt}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="h-72 w-full rounded-2xl object-cover md:h-full"
               />
             </div>
             {images.slice(1, 5).map((img) => (
-              <div key={img.url} className="hidden md:block">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div key={img.url} className="relative hidden md:block h-36">
+                <Image
                   src={img.url}
                   alt={img.alt}
+                  fill
+                  sizes="25vw"
                   className="h-36 w-full rounded-2xl object-cover"
                 />
               </div>

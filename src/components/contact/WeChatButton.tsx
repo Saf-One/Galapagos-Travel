@@ -1,6 +1,7 @@
 "use client";
 
 import {useState} from "react";
+import Image from "next/image";
 import {useTranslations} from "next-intl";
 import {CONFIG} from "@/lib/config";
 import {Button, type ButtonProps} from "@/components/Button";
@@ -70,9 +71,11 @@ export function WeChatButton({
 
             {/* QR placeholder (real picsum image). */}
             <div className="mx-auto mb-4 h-40 w-40 overflow-hidden rounded-xl border border-stone/40 bg-sand">
-              <img
+              <Image
                 src="https://picsum.photos/seed/galapagos-wechat-qr/320/320"
                 alt={tc("scanQr")}
+                width={320}
+                height={320}
                 className="h-full w-full object-cover"
               />
             </div>

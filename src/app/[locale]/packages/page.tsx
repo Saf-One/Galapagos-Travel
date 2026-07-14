@@ -4,8 +4,8 @@ import {PackagesFilter} from "@/components/package/PackagesFilter";
 import {prisma} from "@/lib/prisma";
 import type {PackageCardData} from "@/lib/types";
 
-// Runtime data (DB read) -> render at request time with safe fallback.
-export const dynamic = "force-dynamic";
+// ISR: re-generate the catalog at most hourly (served from CDN).
+export const revalidate = 3600;
 
 // === CONFIGURABLE VALUES ===
 // How many packages to show per catalog call. 0 / unset = all.

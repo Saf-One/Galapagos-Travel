@@ -1,6 +1,7 @@
 "use client";
 
 import {useTranslations} from "next-intl";
+import Image from "next/image";
 import {Link} from "@/i18n/navigation";
 import {formatPrice} from "@/lib/format";
 import type {PackageCardData} from "@/lib/types";
@@ -18,11 +19,12 @@ export function PackageCard({pkg}: {pkg: PackageCardData}) {
       className="group flex flex-col overflow-hidden rounded-2xl border border-stone/40 bg-white shadow-sm transition-soft hover:shadow-md"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-sand">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={pkg.images[0]?.url || "https://picsum.photos/seed/galapagos/640/480"}
           alt={pkg.images[0]?.alt || pkg.title}
-          className="h-full w-full object-cover transition-soft group-hover:scale-105"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-soft group-hover:scale-105"
         />
         {pkg.featured && (
           <span className="absolute left-3 top-3 rounded-full bg-gold px-3 py-1 text-xs font-medium text-cream">
