@@ -3,9 +3,15 @@ import {getTranslations} from "next-intl/server";
 import {Link} from "@/i18n/navigation";
 import {Container} from "@/components/Container";
 import {Button} from "@/components/Button";
+import {WhatsAppButton} from "@/components/contact/WhatsAppButton";
+import {WeChatButton} from "@/components/contact/WeChatButton";
 import {prisma} from "@/lib/prisma";
-import {CONFIG, whatsappLink} from "@/lib/config";
+import {CONFIG} from "@/lib/config";
 import {PackageCard} from "@/components/package/PackageCard";
+import {LeadCaptureForm} from "@/components/lead/LeadCaptureForm";
+import {JsonLd} from "@/components/seo/JsonLd";
+import {SITE_URL, localeUrl} from "@/lib/seo";
+import type {AppLocale} from "@/lib/config";
 import type {PackageCardData} from "@/lib/types";
 
 // Runtime data (DB) -> render at request time with a safe fallback.
@@ -61,8 +67,35 @@ export default async function HomePage({
     "flexibility",
   ] as const;
 
+  const homeUrl = localeUrl(locale as AppLocale, "");
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    name: CONFIG.siteName,
+    url: homeUrl,
+    email: CONFIG.contactEmail,
+    image: "https://picsum.photos/seed/galapagos-hero/1200/630",
+    sameAs: [SITE_URL],
+    areaServed: "Galapagos Islands, Ecuador",
+  };
+  const destinationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TouristDestination",
+    name: "Galapagos Islands",
+    description: th("hero.subtitle"),
+    url: homeUrl,
+    touristType: ["Nature", "Wildlife", "Adventure"],
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -0.9538,
+      longitude: -90.9656,
+    },
+  };
+
   return (
     <div className="pb-10">
+      <JsonLd data={orgJsonLd} />
+      <JsonLd data={destinationJsonLd} />
       {/* Hero */}
       <section className="relative overflow-hidden bg-navy text-cream">
         <div
@@ -159,10 +192,13 @@ export default async function HomePage({
               {th("contactTitle")}
             </h2>
             <p className="max-w-xl text-cream/80">{th("contactSubtitle")}</p>
+            <LeadCaptureForm
+              source="home-contact-strip"
+              className="w-full max-w-xl text-left"
+            />
             <div className="flex flex-wrap justify-center gap-3">
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <Button variant="gold">{t("footer.whatsapp")}</Button>
-              </a>
+              <WhatsAppButton message={th("whatsappMsg")} />
+              <WeChatButton />
               <Link href="/contact">
                 <Button variant="secondary" className="border-cream/40 text-cream hover:bg-cream hover:text-navy">
                   {t("nav.contact")}
