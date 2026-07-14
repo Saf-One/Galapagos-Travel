@@ -1,0 +1,38 @@
+# ===== Dependencies =====
+node_modules/
+.pnp/
+.pnp.js
+
+# ===== Build output =====
+dist/
+build/
+.next/
+out/
+.vercel/
+.turbo/
+*.tsbuildinfo
+
+# ===== Environment & secrets (NEVER commit) =====
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials.json
+secrets.json
+
+# ===== AI / Management markdown files (NEVER commit) =====
+# Only README.md is tracked. All other markdown is ignored.
+*.md
+!README.md
+
+# ===== OS / Editor =====
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# ===== Logs =====
+*.log
+npm-debug.log*
