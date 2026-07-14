@@ -1,0 +1,61 @@
+{
+  "siteName": "Galapagos Voyages",
+  "nav": {
+    "home": "Inicio",
+    "packages": "Paquetes",
+    "bookings": "Reservas",
+    "account": "Cuenta",
+    "contact": "Contacto",
+    "admin": "Administración"
+  },
+  "home": {
+    "hero": {
+      "title": "Viaja al Edén Viviente",
+      "subtitle": "Viajes en grupos pequeños por las Islas Galápagos, guiados por naturalistas y diseñados según el ritmo salvaje del archipiélago.",
+      "cta": "Explorar Paquetes"
+    },
+    "featuredTitle": "Viajes Destacados",
+    "featuredSubtitle": "Itinerarios cuidados para todo tipo de viajero.",
+    "whyTitle": "Por Qué Viajar Con Nosotros",
+    "whySubtitle": "Una forma más tranquila y profunda de ver las islas encantadas.",
+    "why": {
+      "guides": {
+        "title": "Guías Naturalistas Expertos",
+        "body": "Guías bilingües y certificados que conocen cada pinzón, cada tortuga y cada corriente."
+      },
+      "smallGroups": {
+        "title": "Grupos Pequeños",
+        "body": "Barcos íntimos y estancias en tierra mantienen la experiencia personal y de bajo impacto."
+      },
+      "conservation": {
+        "title": "Conservación Primero",
+        "body": "Seguimos prácticas de sostenibilidad estrictas y apoyamos a las comunidades locales."
+      },
+      "flexibility": {
+        "title": "Itinerarios Flexibles",
+        "body": "Adapta tus días a la fauna, la fotografía o el descanso."
+      }
+    },
+    "contactTitle": "¿Listo para planear tu viaje?",
+    "contactSubtitle": "Contáctanos por WhatsApp o WeChat, o explora los paquetes para empezar.",
+    "bookNow": "Reservar Ahora",
+    "learnMore": "Saber Más"
+  },
+  "footer": {
+    "text": "Galapagos Voyages - turismo responsable en las islas encantadas.",
+    "rights": "Todos los derechos reservados.",
+    "contactLabel": "Contacto",
+    "whatsapp": "WhatsApp",
+    "wechat": "WeChat"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal.",
+    "bookNow": "Reservar Ahora",
+    "learnMore": "Saber Más",
+    "from": "desde",
+    "perPerson": "por persona",
+    "days": "días",
+    "viewPackage": "Ver Paquete"
+  }
+}

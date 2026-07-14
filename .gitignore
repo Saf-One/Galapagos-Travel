@@ -36,3 +36,8 @@ Thumbs.db
 # ===== Logs =====
 *.log
 npm-debug.log*
+
+# ===== Database (SQLite dev DB, never commit) =====
+*.db
+*.sqlite
+prisma/dev.db

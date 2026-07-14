@@ -1,0 +1,61 @@
+{
+  "siteName": "Galapagos Voyages",
+  "nav": {
+    "home": "首页",
+    "packages": "行程套餐",
+    "bookings": "预订",
+    "account": "账户",
+    "contact": "联系我们",
+    "admin": "管理后台"
+  },
+  "home": {
+    "hero": {
+      "title": "前往生机盎然的伊甸园",
+      "subtitle": "在 naturalist 向导的带领下，以小型团队的方式游览加拉帕戈斯群岛，依群岛野性的节奏安排行程。",
+      "cta": "浏览套餐"
+    },
+    "featuredTitle": "精选航程",
+    "featuredSubtitle": "为各类旅行者精心设计的行程。",
+    "whyTitle": "为什么选择我们",
+    "whySubtitle": "一种更宁静、更深入的方式，去认识这座迷人的群岛。",
+    "why": {
+      "guides": {
+        "title": "专业的自然向导",
+        "body": "持有执照、双语服务的向导，熟悉每一只雀鸟、海龟与洋流。"
+      },
+      "smallGroups": {
+        "title": "小型团队",
+        "body": "亲密的船只与地面住宿，让体验更私人、对环境更友好。"
+      },
+      "conservation": {
+        "title": "以保育为先",
+        "body": "我们遵循严格的可持续做法，并支持当地社区。"
+      },
+      "flexibility": {
+        "title": "灵活行程",
+        "body": "根据你的喜好安排观兽、摄影或纯粹休憩的每一天。"
+      }
+    },
+    "contactTitle": "准备好规划你的航程了吗？",
+    "contactSubtitle": "通过 WhatsApp 或微信联系我们，或浏览套餐开始旅程。",
+    "bookNow": "立即预订",
+    "learnMore": "了解更多"
+  },
+  "footer": {
+    "text": "Galapagos Voyages - 负责任的旅行，探索迷人的群岛。",
+    "rights": "版权所有。",
+    "contactLabel": "联系我们",
+    "whatsapp": "WhatsApp",
+    "wechat": "微信"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出了点问题。",
+    "bookNow": "立即预订",
+    "learnMore": "了解更多",
+    "from": "起价",
+    "perPerson": "每人",
+    "days": "天",
+    "viewPackage": "查看套餐"
+  }
+}

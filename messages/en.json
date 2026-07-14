@@ -1,0 +1,61 @@
+{
+  "siteName": "Galapagos Voyages",
+  "nav": {
+    "home": "Home",
+    "packages": "Packages",
+    "bookings": "Bookings",
+    "account": "Account",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero": {
+      "title": "Journey to the Living Eden",
+      "subtitle": "Small-group voyages through the Galapagos Islands, guided by naturalists and built around the wild rhythm of the archipelago.",
+      "cta": "Explore Packages"
+    },
+    "featuredTitle": "Featured Voyages",
+    "featuredSubtitle": "Hand-crafted itineraries for every kind of traveler.",
+    "whyTitle": "Why Travel With Us",
+    "whySubtitle": "A calmer, deeper way to see the enchanted islands.",
+    "why": {
+      "guides": {
+        "title": "Expert Naturalist Guides",
+        "body": "Licensed, bilingual guides who know every finch, tortoise, and current."
+      },
+      "smallGroups": {
+        "title": "Small Groups",
+        "body": "Intimate vessels and land stays keep the experience personal and low-impact."
+      },
+      "conservation": {
+        "title": "Conservation First",
+        "body": "We follow strict sustainability practices and support local communities."
+      },
+      "flexibility": {
+        "title": "Flexible Itineraries",
+        "body": "Tailor your days to wildlife, photography, or pure rest."
+      }
+    },
+    "contactTitle": "Ready to plan your voyage?",
+    "contactSubtitle": "Reach us on WhatsApp or WeChat, or browse packages to begin.",
+    "bookNow": "Book Now",
+    "learnMore": "Learn More"
+  },
+  "footer": {
+    "text": "Galapagos Voyages - responsible travel to the enchanted islands.",
+    "rights": "All rights reserved.",
+    "contactLabel": "Contact",
+    "whatsapp": "WhatsApp",
+    "wechat": "WeChat"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong.",
+    "bookNow": "Book Now",
+    "learnMore": "Learn More",
+    "from": "from",
+    "perPerson": "per person",
+    "days": "days",
+    "viewPackage": "View Package"
+  }
+}
