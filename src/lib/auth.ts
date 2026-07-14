@@ -12,6 +12,9 @@ import {CONFIG} from "./config";
 export const {handlers, auth, signIn, signOut} = NextAuth({
   adapter: PrismaAdapter(prisma),
   session: {strategy: "jwt"},
+  // trustHost lets Auth.js trust the Host header. Safe and required when the
+  // app is served behind a proxy / in containers; defaults to true in v5.
+  trustHost: true,
   secret: CONFIG.authSecret,
   pages: {
     signIn: "/en/account/login",
