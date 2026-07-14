@@ -57,7 +57,8 @@
     "from": "from",
     "perPerson": "per person",
     "days": "days",
-    "viewPackage": "View Package"
+    "viewPackage": "View Package",
+    "maxGuests": "{count, plural, one {# guest} other {# guests}}"
   },
   "booking": {
     "title": "Book your voyage",

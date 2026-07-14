@@ -29,7 +29,7 @@ const RESPONSES: Record<AppLocale, Record<Intent, string>> = {
     bestTime:
       "The Galapagos is a year-round destination. June to November is cooler and great for diving; December to May is warmer with calm seas and ideal for snorkeling. Wildlife is present in every month.",
     booking:
-      "You can book directly from any package page. Choose your dates and guest count, and we will hold availability for 20 minutes while you pay. Need help? Message us on WhatsApp.",
+      "You can book directly from any package page. Choose your dates and guest count, and we will hold availability for 15 minutes while you pay. Need help? Message us on WhatsApp.",
     payment:
       "We accept Stripe (cards) and PayPal. All payments are processed securely. A deposit confirms your spot, with the balance due before arrival.",
     contact:
@@ -43,7 +43,7 @@ const RESPONSES: Record<AppLocale, Record<Intent, string>> = {
     bestTime:
       "Las Galápagos se puede visitar todo el año. De junio a noviembre hace más fresco y es ideal para bucear; de diciembre a mayo hace más calor, con mares tranquilas, perfecto para snorkel. La fauna está presente cada mes.",
     booking:
-      "Puedes reservar directamente desde cualquier página de paquete. Elige tus fechas y número de viajeros, y mantendremos disponibilidad 20 minutos mientras pagas. ¿Necesitas ayuda? Escríbenos por WhatsApp.",
+      "Puedes reservar directamente desde cualquier página de paquete. Elige tus fechas y número de viajeros, y mantendremos disponibilidad 15 minutos mientras pagas. ¿Necesitas ayuda? Escríbenos por WhatsApp.",
     payment:
       "Aceptamos Stripe (tarjetas) y PayPal. Todos los pagos se procesan de forma segura. Un depósito confirma tu lugar; el saldo se paga antes de la llegada.",
     contact:
@@ -57,7 +57,7 @@ const RESPONSES: Record<AppLocale, Record<Intent, string>> = {
     bestTime:
       "加拉帕戈斯全年都适合旅行。6 月至 11 月较凉爽，适合潜水；12 月至次年 5 月较温暖、海面平静，适合浮潜。每个月都能看到丰富的野生动物。",
     booking:
-      "你可以直接在任意套餐页面预订。选择日期与人数后，我们会在你付款期间为你保留 20 分钟名额。需要帮助？欢迎通过 WhatsApp 联系我们。",
+      "你可以直接在任意套餐页面预订。选择日期与人数后，我们会在你付款期间为你保留 15 分钟名额。需要帮助？欢迎通过 WhatsApp 联系我们。",
     payment:
       "我们支持 Stripe（信用卡）与 PayPal，所有支付均安全处理。支付定金即可确认名额，余款在抵达前结清。",
     contact:

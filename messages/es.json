@@ -201,7 +201,7 @@
     "registerError": "Ya existe una cuenta con este correo electrónico.",
     "passwordMismatch": "Las contraseñas no coinciden.",
     "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
-    "viewPackage": "Ver Paquete"
+    "invalidEmail": "Introduce un correo electronico valido."
   },
   "booking": {
     "title": "Reserva tu viaje",
