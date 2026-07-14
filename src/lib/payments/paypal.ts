@@ -8,6 +8,10 @@ const configured =
   CONFIG.paypal.clientId !== "placeholder" &&
   CONFIG.paypal.clientSecret !== "placeholder";
 
+export const paypalConfig = {
+  isConfigured: configured,
+};
+
 function baseUrl() {
   return CONFIG.paypal.mode === "live"
     ? "https://api-m.paypal.com"
