@@ -70,5 +70,5 @@ export async function POST(req: NextRequest) {
 }
 
 // Reference to keep CONFIG import meaningful for future template wiring.
-export const WHATSAPP_CONFIGURED =
+const WHATSAPP_CONFIGURED =
   !!CONFIG.whatsappNumber && CONFIG.whatsappNumber !== "593999999999";
