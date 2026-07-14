@@ -5,26 +5,37 @@ import {Container} from "@/components/Container";
 import {Button} from "@/components/Button";
 import {prisma} from "@/lib/prisma";
 import {CONFIG, whatsappLink} from "@/lib/config";
+import {PackageCard} from "@/components/package/PackageCard";
+import type {PackageCardData} from "@/lib/types";
 
 // Runtime data (DB) -> render at request time with a safe fallback.
 export const dynamic = "force-dynamic";
 
-function formatPrice(cents: number, currency: string) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency,
-    maximumFractionDigits: 0,
-  }).format(cents / 100);
-}
-
-async function getFeaturedPackages() {
+async function getFeaturedPackages(): Promise<PackageCardData[]> {
   try {
-    return await prisma.package.findMany({
+    const rows = await prisma.package.findMany({
       where: {featured: true},
       include: {images: {orderBy: {sortOrder: "asc"}}},
       take: 6,
       orderBy: {createdAt: "asc"},
     });
+    return rows.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      title: p.title,
+      summary: p.summary,
+      priceInCents: p.priceInCents,
+      currency: p.currency,
+      durationDays: p.durationDays,
+      location: p.location,
+      maxGuests: p.maxGuests,
+      featured: p.featured,
+      images: p.images.map((img) => ({
+        url: img.url,
+        alt: img.alt,
+        sortOrder: img.sortOrder,
+      })),
+    }));
   } catch {
     // DB unavailable (e.g. build without push) -> empty so UI is not broken.
     return [];
@@ -106,38 +117,7 @@ export default async function HomePage({
           ) : (
             <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {packages.map((pkg) => (
-                <Link
-                  key={pkg.id}
-                  href={`/packages/${pkg.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-2xl border border-stone/40 bg-white shadow-sm transition-soft hover:shadow-md"
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-sand">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={
-                        pkg.images[0]?.url ||
-                        "https://picsum.photos/seed/galapagos/640/480"
-                      }
-                      alt={pkg.images[0]?.alt || pkg.title}
-                      className="h-full w-full object-cover transition-soft group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-serif text-xl text-navy">{pkg.title}</h3>
-                    <p className="mt-1 line-clamp-2 text-sm text-muted">
-                      {pkg.summary}
-                    </p>
-                    <div className="mt-4 flex items-center justify-between text-sm">
-                      <span className="text-muted">
-                        {tc("from")}{" "}
-                        <span className="font-semibold text-navy">
-                          {formatPrice(pkg.priceInCents, pkg.currency)}
-                        </span>{" "}
-                        {tc("perPerson")} · {pkg.durationDays} {tc("days")}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
+                <PackageCard key={pkg.id} pkg={pkg} />
               ))}
             </div>
           )}
