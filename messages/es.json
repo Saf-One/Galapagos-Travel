@@ -269,6 +269,23 @@
     "wechatId": "ID de WeChat",
     "scanQr": "Escanea para conectar en WeChat",
     "leadEmailPrompt": "Deja tu correo y te responderemos:",
-    "thankYou": "¡Gracias! Ya tenemos tus datos y te contactaremos pronto."
+    "thankYou": "¡Gracias! Ya tenemos tus datos y te contactaremos pronto.",
+    "contactTitle": "Contáctanos",
+    "contactIntro": "Cuéntanos sobre el viaje a Galápagos de tus sueños y nuestro equipo te ayudará a planificarlo.",
+    "followUpNote": "Respondemos en un día hábil. También puedes escribirnos por WhatsApp o WeChat."
+  },
+  "seo": {
+    "metaTitleHome": "Galapagos Voyages - Expediciones en grupos reducidos a las Islas Encantadas",
+    "metaDescHome": "Viajes en grupos reducidos por las Islas Galápagos, guiados por naturalistas. Fauna, conservación e itinerarios inolvidables.",
+    "metaTitlePackages": "Viajes y Paquetes - Galapagos Voyages",
+    "metaDescPackages": "Explora expediciones a Galápagos en grupos reducidos: cruceros, estancias en tierra y aventuras de buceo por el archipiélago."
+  },
+  "lead": {
+    "leadTitle": "Planifica tu viaje",
+    "leadName": "Tu nombre",
+    "leadEmail": "Correo electrónico",
+    "leadSubmit": "Contactar",
+    "leadSuccess": "Gracias. Nos pondremos en contacto contigo pronto.",
+    "leadError": "Algo salió mal. Inténtalo de nuevo."
   }
 }

@@ -269,6 +269,23 @@
     "wechatId": "微信号",
     "scanQr": "扫码添加微信",
     "leadEmailPrompt": "留下你的邮箱，我们会尽快回复：",
-    "thankYou": "谢谢！我们已收到你的信息，会尽快与你联系。"
+    "thankYou": "谢谢！我们已收到你的信息，会尽快与你联系。",
+    "contactTitle": "联系我们",
+    "contactIntro": "告诉我们您梦想中的加拉帕戈斯之旅，我们的团队将帮助您规划。",
+    "followUpNote": "我们会在一个工作日内回复。您也可以通过 WhatsApp 或微信联系我们。"
+  },
+  "seo": {
+    "metaTitleHome": "Galapagos Voyages - 前往魔法群岛的小团探险",
+    "metaDescHome": "由博物学家带领的加拉帕戈斯群岛小团航行。野生动物、生态保护与难忘的行程。",
+    "metaTitlePackages": "航程与套餐 - Galapagos Voyages",
+    "metaDescPackages": "浏览精选的加拉帕戈斯小团探险：邮轮、陆上住宿以及群岛潜水之旅。"
+  },
+  "lead": {
+    "leadTitle": "规划您的航程",
+    "leadName": "您的姓名",
+    "leadEmail": "电子邮箱",
+    "leadSubmit": "联系我们",
+    "leadSuccess": "谢谢，我们会尽快与您联系。",
+    "leadError": "出了点问题，请重试。"
   }
 }
