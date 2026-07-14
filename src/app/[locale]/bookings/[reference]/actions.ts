@@ -5,7 +5,7 @@ import {prisma} from "@/lib/prisma";
 import {CONFIG} from "@/lib/config";
 import {stripeConfig, createStripeCheckoutSession} from "@/lib/payments/stripe";
 import {paypalConfig, createPaypalOrder} from "@/lib/payments/paypal";
-import {confirmPayment} from "@/lib/booking";
+import {confirmPayment, loyaltyPointsFor} from "@/lib/booking";
 import type {PaymentProvider} from "@prisma/client";
 
 // === CONFIGURABLE VALUES ===
@@ -115,7 +115,7 @@ export async function confirmPaymentAction(
   });
 
   const invoiceNumber = booking?.invoices[0]?.number;
-  const points = booking ? Math.floor(booking.totalCents / 1000) : 0;
+  const points = booking ? loyaltyPointsFor(booking.totalCents) : 0;
 
   return {
     ok: true,

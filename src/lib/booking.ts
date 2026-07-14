@@ -1,4 +1,5 @@
 import {prisma} from "./prisma";
+import {randomBytes} from "crypto";
 import type {BookingStatus, PaymentProvider} from "@prisma/client";
 
 // === CONFIGURABLE VALUES ===
@@ -12,8 +13,14 @@ import type {BookingStatus, PaymentProvider} from "@prisma/client";
 const HOLD_MINUTES = 15;
 
 export function generateReference(): string {
-  // e.g. GP-LZ4K8F3Q2
-  return `GP-${Date.now().toString(36).toUpperCase()}`;
+  // Cryptographically random, unguessable reference (e.g. GP-4f9aBc...).
+  // Avoids Date.now()-based enumeration of bookings.
+  return `GP-${randomBytes(9).toString("base64url")}`;
+}
+
+// Loyalty points: 1 point per $10 USD (i.e. per 1000 cents).
+export function loyaltyPointsFor(totalCents: number): number {
+  return Math.floor(totalCents / 1000);
 }
 
 export function holdExpiry(): Date {
@@ -101,7 +108,7 @@ export async function confirmPayment(
 
   // Loyalty: 1 point per $10 (USD). Other currencies rounded to whole dollars
   // of the cent amount for a sensible demo value.
-  const points = Math.floor(booking.totalCents / 1000);
+  const points = loyaltyPointsFor(booking.totalCents);
 
   await prisma.$transaction([
     prisma.booking.update({

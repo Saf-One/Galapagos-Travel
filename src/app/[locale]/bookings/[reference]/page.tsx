@@ -4,10 +4,8 @@ import {Link} from "@/i18n/navigation";
 import {Container} from "@/components/Container";
 import {Button} from "@/components/Button";
 import {prisma} from "@/lib/prisma";
-import {isBookingExpired} from "@/lib/booking";
-import {confirmPaymentAction} from "./actions";
+import {isBookingExpired, loyaltyPointsFor} from "@/lib/booking";
 import {PaymentButtons} from "./PaymentButtons";
-import type {PaymentProvider} from "@prisma/client";
 
 // Request-time data (DB) -> render dynamically.
 export const dynamic = "force-dynamic";
@@ -30,10 +28,8 @@ const STATUS_STYLES: Record<string, string> = {
 
 export default async function BookingStatusPage({
   params,
-  searchParams,
 }: {
   params: Promise<{locale: string; reference: string}>;
-  searchParams: Promise<{[key: string]: string | string[] | undefined}>;
 }) {
   const {locale, reference} = await params;
   setRequestLocale(locale);
@@ -46,28 +42,16 @@ export default async function BookingStatusPage({
 
   if (!booking) notFound();
 
-  const sp = await searchParams;
-  const statusParam = typeof sp.status === "string" ? sp.status : undefined;
-  const providerParam =
-    typeof sp.provider === "string"
-      ? (sp.provider.toUpperCase() as PaymentProvider)
-      : undefined;
-
-  // If the user returns from a (simulated or real) success redirect, confirm the
-  // payment. This is idempotent: already-PAID bookings are skipped.
-  let confirmed: Awaited<ReturnType<typeof confirmPaymentAction>> | null = null;
-  if (statusParam === "success" && providerParam) {
-    confirmed = await confirmPaymentAction(reference, providerParam);
-  }
-
-  const isPaid = booking.status === "PAID" || confirmed?.status === "PAID";
+  // Read-only: this page only reflects the booking's current status. Payment is
+  // flipped to PAID exclusively via confirmPayment (server action) or the
+  // Stripe / PayPal webhooks - never from a URL parameter, which would let
+  // anyone mark an arbitrary booking PAID.
+  const isPaid = booking.status === "PAID";
   const expired =
     booking.status === "PENDING" && isBookingExpired(booking.expiresAt);
 
-  const invoiceNumber =
-    confirmed?.invoiceNumber ?? booking.invoices[0]?.number;
-  const points =
-    confirmed?.points ?? Math.floor(booking.totalCents / 1000);
+  const invoiceNumber = booking.invoices[0]?.number;
+  const points = loyaltyPointsFor(booking.totalCents);
 
   return (
     <div className="py-12">
