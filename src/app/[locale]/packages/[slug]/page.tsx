@@ -1,11 +1,15 @@
 import {setRequestLocale, getTranslations} from "next-intl/server";
+import type {Metadata} from "next";
 import {notFound} from "next/navigation";
 import {Link} from "@/i18n/navigation";
 import {Container} from "@/components/Container";
 import {Button} from "@/components/Button";
+import {JsonLd} from "@/components/seo/JsonLd";
 import {prisma} from "@/lib/prisma";
 import {formatPrice} from "@/lib/format";
 import {deriveHighlights} from "@/lib/types";
+import {localeUrl, hreflangAlternates} from "@/lib/seo";
+import type {AppLocale} from "@/lib/config";
 
 // Runtime data (DB read) -> render at request time with safe fallback.
 export const dynamic = "force-dynamic";
@@ -64,6 +68,41 @@ export async function generateStaticParams() {
   }
 }
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{locale: string; slug: string}>;
+}): Promise<Metadata> {
+  const {locale, slug} = await params;
+  const pkg = await getPackageBySlug(slug);
+  const path = `/packages/${slug}`;
+  if (!pkg) {
+    return {
+      alternates: {
+        canonical: localeUrl(locale as AppLocale, path),
+        languages: hreflangAlternates(path),
+      },
+    };
+  }
+  return {
+    title: pkg.title,
+    description: pkg.summary,
+    alternates: {
+      canonical: localeUrl(locale as AppLocale, path),
+      languages: hreflangAlternates(path),
+    },
+    openGraph: {
+      title: pkg.title,
+      description: pkg.summary,
+      url: localeUrl(locale as AppLocale, path),
+      type: "website",
+      images: pkg.images[0]?.url
+        ? [{url: pkg.images[0].url}]
+        : undefined,
+    },
+  };
+}
+
 export default async function PackageDetailPage({
   params,
 }: {
@@ -105,8 +144,26 @@ export default async function PackageDetailPage({
 
   const finalCents = bestPromo ? bestPromo.discounted : pkg.priceInCents;
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: pkg.title,
+    description: pkg.summary,
+    image: images.map((img) => img.url),
+    url: localeUrl(locale as AppLocale, `/packages/${pkg.slug}`),
+    brand: {"@type": "Brand", name: "Galapagos Voyages"},
+    offers: {
+      "@type": "Offer",
+      price: (finalCents / 100).toFixed(2),
+      priceCurrency: pkg.currency,
+      availability: "https://schema.org/InStock",
+      url: localeUrl(locale as AppLocale, `/book/${pkg.slug}`),
+    },
+  };
+
   return (
     <div className="pb-12">
+      <JsonLd data={productJsonLd} />
       {/* Breadcrumb */}
       <Container className="pt-6">
         <nav className="text-sm text-muted">
